@@ -1,3 +1,4 @@
 # Cope
-Biggest cope on github
-Cope harder
+Yoink passwords from browsers based on Chromium.
+
+Cope harder.
